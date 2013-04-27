@@ -35,6 +35,7 @@ public class ServerController
       		break;
       	case "close":
       	case "quit":
+      		model.closeClient();
       		view.Println("The program is closed..");
       		System.exit(0);
             break;

@@ -39,4 +39,9 @@ public class ServerModelManager extends Observable implements ModelInterface
 	   return bookings;
    }
    
+   public void closeClient()
+   {
+	   
+   }
+   
 }

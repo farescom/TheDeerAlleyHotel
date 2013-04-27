@@ -13,13 +13,12 @@ public class ClientView implements Observer
 
    public ClientView()
    {
-	   System.out.println("Hello! Type command to see what you can do.");
    }
    
    public void start(ClientController controller)
    {
       this.controller = controller;
-      
+      controller.execute("Server?");
       try
       {
     	  BufferedReader bufferRead = new BufferedReader(new InputStreamReader(System.in));
@@ -39,8 +38,9 @@ public class ClientView implements Observer
    @Override
    public void update(Observable arg0, Object arg1)
    {
-	  String inforamtion = (String)arg1;
-	  System.out.println(inforamtion);
+	  //String inforamtion = (String)arg1;
+	  //System.out.println(inforamtion);
+	  controller.execute(arg1);
    }
    
    public void Println(String text)

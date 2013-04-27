@@ -20,13 +20,29 @@ public class ClientController
       this.model.addObserver(view);
    }
 
-   public void execute(String what)
+   public void execute(Object what)
    {
-	   what = what.toLowerCase();
-	      switch (what)			// here we define all the functionality of our Hoter system for server :)	
+	   if (what instanceof String)	// then its just a command
+	   {
+		  String command = ((String)what).toLowerCase();
+	      switch (command)			// here we define all the functionality of our Hoter system for server :)	
 	      {
 	        case "":
 	    	  break;
+	        case "server?":		// we have to check the status of server
+	          if (model.getStatus() == 0)
+	          {
+	        	  view.Println("The server is not working.");
+	        	  execute("close");
+	          }
+	          else
+	          {
+	        	  System.out.println("Hello! Type command to see what you can do.");
+	          }
+	          break;
+	        case "serveroff":		// we have to check the status of server
+	        	view.Println("Sorry! The server stopped working!");
+		        execute("close"); 
 	        case "command":
 	        case "commands":
 	      		view.Println("Available commands:");
@@ -49,5 +65,11 @@ public class ClientController
 	      	default:
 	      		view.Println("Unknown command!");
 	      }
+
+	   }
+	   else
+	   {
+		   view.Println("An object reveived!");
+	   }
    }
 }

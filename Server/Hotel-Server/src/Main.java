@@ -8,8 +8,8 @@ public class Main
    {
       try
       {
-    	  //Question: Is it enough to have server and recetion in the same app, or
-    	  //		  we have to create server app, and normal application??
+	  //Question: Is it enough to have server and recetion in the same app, or
+	  //		  we have to create server app, and normal application??
     	  
       // creating serverS
          ServerModelManager model = new ServerModelManager();
