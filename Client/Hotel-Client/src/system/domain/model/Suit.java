@@ -1,0 +1,26 @@
+package system.domain.model;
+
+import java.io.Serializable;
+
+public class Suit extends Room implements Serializable
+{
+	public Suit(int id, int number_of_bedrooms, int price)
+	{
+		super(id, price, number_of_bedrooms);
+	}
+	
+	public Suit(int id, int number_of_bedrooms)
+	{
+		super(id, number_of_bedrooms);
+		if (number_of_bedrooms == 1) price = 240;
+		else if (number_of_bedrooms == 2) price = 320;
+		else if (number_of_bedrooms == 3) price = 400;
+	}
+
+	@Override
+	public String toString()
+	{
+		return "Suit. id: " + id + ", bedrooms: " +
+				number_of_bedrooms + ", price: " + price + ".";
+	}
+}
