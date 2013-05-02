@@ -12,6 +12,7 @@ public class Main
 	  //		  we have to create server app, and normal application??
     	  
       // creating serverS
+    	  System.out.println("DUPA");
          ServerModelManager model = new ServerModelManager();
          ServerView view = new ServerView();
          ServerController controller = new ServerController(model, view);
