@@ -14,7 +14,7 @@ public class Booking implements Serializable
 	ArrayList <Room> booked_rooms;		// which rooms are booked at which prices.
 	Date arrival;
 	Date departure;
-	int extra_bed = 0; 				 	// the number of extra beds
+	int extra_bed = 0; 				 	// (Optional) the number of extra beds
 	int number_of_guests;				// (Optional) could be null
 	
 	int status = 1;							// the status of Booking
