@@ -11,8 +11,7 @@ public class Main
 	  //Question: Is it enough to have server and recetion in the same app, or
 	  //		  we have to create server app, and normal application??
     	  
-      // creating serverS
-    	  System.out.println("DUPA");
+      // creating serverS2
          ServerModelManager model = new ServerModelManager();
          ServerView view = new ServerView();
          ServerController controller = new ServerController(model, view);
