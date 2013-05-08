@@ -113,12 +113,15 @@ public class ServerModelManager extends Observable implements ModelInterface
 	}
 	
 	/**
-	 * Return a ArrayList of rooms available in given period of time
+	 * Return a ArrayList of rooms available in given period of time,
+	 * limited by range of prices (or optionally by type of room)
 	 * 
 	 * @param ArrayList<Date> dates
+	 * @param ArrayList<Integer> prices
+	 * @param Integer roomType
 	 * @return ArrayList<Room>
 	 */
-	public ArrayList<Room> ListAvailableRoomsByPeriod(ArrayList<Date> dates)
+	public ArrayList<Room> ListAvailableRoomsByPeriod(ArrayList<Date> dates, ArrayList<Integer> prices, Integer roomType)
 	{
 		ArrayList<Room> freeRooms = new ArrayList<Room>();
 		ArrayList<Room> bookedRooms = new ArrayList<Room>();
@@ -134,9 +137,15 @@ public class ServerModelManager extends Observable implements ModelInterface
 		
 		for(Room room : rooms)
 		{
-			if(!bookedRooms.contains(room))
+			if(!bookedRooms.contains(room) &&
+					(room.get_price() >= prices.get(0) && room.get_price() <= prices.get(1)))
 			{
-				freeRooms.add(room);
+				if(roomType != null)
+				{
+					if(room.get_number_of_bedrooms() == roomType)
+						freeRooms.add(room);
+				}
+				else freeRooms.add(room);
 			}
 		}
 		

@@ -72,7 +72,7 @@ public class ServerController
 			view.Println(model.ListCheckoutsByDay(getDateInfo()).toString());
 			break;
 		case "available_rooms_by_period":
-			view.Println(model.ListAvailableRoomsByPeriod(getPeriod()).toString());
+			view.Println(model.ListAvailableRoomsByPeriod(getPeriod(), getPriceRange(), getRoomType()).toString());
 			break;
 		default:
 			view.Println("Unknown command!");
@@ -221,5 +221,45 @@ public class ServerController
 		dates.add(SimpleDate.getTime(view.readLine()).getTime());
 		
 		return dates;
+	}
+	
+	/**
+	 * Ask user for a start price of room
+	 * Then ask user for a end price of room
+	 * 
+	 * @return ArrayList<Integer>
+	 * @throws IOException
+	 */
+	private ArrayList<Integer> getPriceRange() throws IOException
+	{
+		ArrayList<Integer> prices = new ArrayList<Integer>();
+		
+		view.Print("Start price for room: ");
+		prices.add(Integer.parseInt(view.readLine()));
+		
+		view.Print("End price for room: ");
+		prices.add(Integer.parseInt(view.readLine()));
+		
+		return prices;
+	}
+	
+	/**
+	 * Ask user for a room type
+	 * 
+	 * @return ArrayList<Integer>
+	 * @throws IOException
+	 */
+	private Integer getRoomType() throws IOException
+	{
+		view.Print("Do you want to check a special room type (y/n): ");
+		if(view.readLine().equals("y"))
+		{
+			view.Println("1 - Single Room");
+			view.Println("2 - Double Room");
+			
+			return Integer.parseInt(view.readLine());
+		}
+		
+		return null;
 	}
 }
