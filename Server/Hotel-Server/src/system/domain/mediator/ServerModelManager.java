@@ -111,6 +111,37 @@ public class ServerModelManager extends Observable implements ModelInterface
 	{
 		return rooms;
 	}
+	
+	/**
+	 * Return a ArrayList of rooms available in given period of time
+	 * 
+	 * @param ArrayList<Date> dates
+	 * @return ArrayList<Room>
+	 */
+	public ArrayList<Room> ListAvailableRoomsByPeriod(ArrayList<Date> dates)
+	{
+		ArrayList<Room> freeRooms = new ArrayList<Room>();
+		ArrayList<Room> bookedRooms = new ArrayList<Room>();
+		for(Booking book : bookings)
+		{
+			if((book.getArrival().compareTo(dates.get(0)) >= 0 && book.getArrival().compareTo(dates.get(1)) <= 0) ||
+					(book.getDeparture().compareTo(dates.get(0)) >= 0 && book.getDeparture().compareTo(dates.get(1)) <= 0))
+			{
+				bookedRooms.addAll(book.getBooked_rooms());
+			}
+			
+		}
+		
+		for(Room room : rooms)
+		{
+			if(!bookedRooms.contains(room))
+			{
+				freeRooms.add(room);
+			}
+		}
+		
+		return freeRooms;
+	}
 
 	public void closeClient()
 	{

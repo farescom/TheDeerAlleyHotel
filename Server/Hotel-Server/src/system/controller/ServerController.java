@@ -43,8 +43,9 @@ public class ServerController
 			view.Println("bookings: shows all the bookings (reservations).");
 			view.Println("checkins: shows all checkins.");
 			view.Println("checkouts: shows all checkouts.");
-			view.Println("checkinsByDay: shows all checkins in given day.");
-			view.Println("checkoutsByDay: shows all checkouts in given day.");
+			view.Println("checkins_by_day: shows all checkins in given day.");
+			view.Println("checkouts_by_day: shows all checkouts in given day.");
+			view.Println("available_rooms_by_period: shows all available rooms by given period.");
 			break;
 		case "close":
 		case "quit":
@@ -64,11 +65,14 @@ public class ServerController
 		case "checkouts":
 			view.Println(model.ListCheckouts().toString());
 			break;
-		case "checkinsByDay":
+		case "checkins_by_day":
 			view.Println(model.ListCheckinsByDay(getDateInfo()).toString());
 			break;
-		case "checkoutsByDay":
+		case "checkouts_by_day":
 			view.Println(model.ListCheckoutsByDay(getDateInfo()).toString());
+			break;
+		case "available_rooms_by_period":
+			view.Println(model.ListAvailableRoomsByPeriod(getPeriod()).toString());
 			break;
 		default:
 			view.Println("Unknown command!");
@@ -197,5 +201,25 @@ public class ServerController
 	{
 		view.Print("Date format dd/MM/yyyy HH");
 		return SimpleDate.getTime(view.readLine()).getTime();
+	}
+	
+	/**
+	 * Ask user for a start date in a string format (dd/MM/yyyy)
+	 * Then ask user for a end date in a string format (dd/MM/yyyy)
+	 * 
+	 * @return ArrayList<Date>
+	 * @throws IOException
+	 */
+	private ArrayList<Date> getPeriod() throws IOException
+	{
+		ArrayList<Date> dates = new ArrayList<Date>();
+		
+		view.Print("Start date format dd/MM/yyyy");
+		dates.add(SimpleDate.getTime(view.readLine()).getTime());
+		
+		view.Print("End date format dd/MM/yyyy");
+		dates.add(SimpleDate.getTime(view.readLine()).getTime());
+		
+		return dates;
 	}
 }
