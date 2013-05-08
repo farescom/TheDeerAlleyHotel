@@ -10,7 +10,7 @@ public class Guest implements Serializable
 	String date_of_birth;
 	String nationality;
 	
-	Guest(String name, String address, String phone, String date_of_birth, String nationality)
+	public Guest(String name, String address, String phone, String date_of_birth, String nationality)
 	{
 		this.name = name;
 		this.address = address;
@@ -19,7 +19,7 @@ public class Guest implements Serializable
 		this.nationality = nationality;
 	}
 	
-	Guest()
+	public Guest()
 	{
 		this.name = "name";
 		this.address = "address";

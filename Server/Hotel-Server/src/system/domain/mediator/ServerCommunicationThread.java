@@ -41,7 +41,7 @@ class ServerCommunicationThread extends Thread
 				Object data = in.readObject();
 				Query query = (Query)data;
 				
-				System.out.println(query);
+				//System.out.println(query);
 				
 				// REPLY
 				// Need to be programmed how to format the solution and send it back
