@@ -14,6 +14,7 @@ import system.domain.model.CheckOut;
 import system.domain.model.Room;
 import utility.persistence.dataProvider;
 
+/** a facade for the Model */
 public class ServerModelManager extends Observable implements ModelInterface
 {
 	private ArrayList<Booking> bookings;

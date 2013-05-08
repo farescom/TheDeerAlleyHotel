@@ -5,6 +5,7 @@ import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.TransformerException;
 import system.domain.model.SingleRoom;
 
+/* A Thread that receives responses from the Server */
 public class ClientReceiverThread extends Thread
 {
 	ClientModelManager clientModelManager;

@@ -12,6 +12,7 @@ import javax.xml.transform.TransformerException;
 import system.domain.model.Query;
 import system.domain.model.SingleRoom;
 
+/* A class that makes a connection with the server */
 public class Proxy
 {
 	private static int PORT = 2012;
@@ -23,6 +24,7 @@ public class Proxy
 	private int counter = 0;
 	ClientModelManager clientModelManager;
     
+	/* Proxy constructor */
 	public Proxy(ClientModelManager clientModelManager, int client_computer_id) throws UnknownHostException, IOException, ParserConfigurationException, TransformerException
 	{
 		this.clientModelManager = clientModelManager;
@@ -32,6 +34,7 @@ public class Proxy
 		inFromServer = new ObjectInputStream(clientSocket.getInputStream());
 	}
 	
+	/* A method responsible for connecting with the server and delegting the task of waiting for responses to ClientReceiverThread*/
 	public void send() throws IOException, ParserConfigurationException, TransformerException
 	{
 		Query query = new Query(client_computer_id, Calendar.getInstance().getTime(), Calendar.getInstance().getTime());

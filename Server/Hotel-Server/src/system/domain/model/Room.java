@@ -2,6 +2,7 @@ package system.domain.model;
 
 import java.io.Serializable;
 
+/** represents the general Room (NormalRoom and Suit inherie from this class) */
 abstract public class Room implements Serializable
 {
 	protected int id;

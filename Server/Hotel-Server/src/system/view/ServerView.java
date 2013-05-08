@@ -14,6 +14,7 @@ import system.domain.model.Guest;
 import system.domain.model.Room;
 import system.domain.model.SimpleDate;
 
+/** A class that represents the console */
 public class ServerView implements Observer
 {
 	private ServerController controller;
@@ -25,6 +26,8 @@ public class ServerView implements Observer
 		bufferRead = new BufferedReader(new InputStreamReader(System.in));
 	}
 
+	/** A method that gets a controller and set it in View class
+	 * @param controller Controller class */
 	public void start(ServerController controller)
 	{
 		this.controller = controller;
@@ -42,6 +45,7 @@ public class ServerView implements Observer
 		}
 	}
 
+	/** A method called by Observavles, to update the view */
 	@Override
 	public void update(Observable arg0, Object arg1)
 	{
@@ -49,16 +53,19 @@ public class ServerView implements Observer
 		System.out.println(inforamtion);
 	}
 	
+	/** A method that reads a line from console */
 	public String readLine() throws IOException
 	{
 		return bufferRead.readLine();
 	}
 	
+	/** A method that prints line with a new line char*/
 	public void Println(String text)
 	{
 		System.out.println(text);
 	}
 
+	/** A method that prints line */
 	public void Print(String text)
 	{
 		System.out.print(text);

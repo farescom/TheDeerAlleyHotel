@@ -2,6 +2,7 @@ package system.domain.model;
 
 import java.io.Serializable;
 
+/** represents a Guest */
 public class Guest implements Serializable
 {
 	String name;

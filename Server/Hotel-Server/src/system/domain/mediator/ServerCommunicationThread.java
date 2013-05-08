@@ -10,6 +10,7 @@ import javax.xml.transform.TransformerException;
 import system.domain.model.Query;
 import system.domain.model.SingleRoom;
 
+/** communicates with a certain client via a socket object given in the conntructor */
 class ServerCommunicationThread extends Thread
 {
 	private ServerModelManager modelManager;

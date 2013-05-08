@@ -3,6 +3,7 @@ package system.domain.model;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
+/** a class that helps in manipulating date and time */
 public class SimpleDate 
 {
    private Calendar time;

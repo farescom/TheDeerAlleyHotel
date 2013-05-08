@@ -7,6 +7,10 @@ import javax.xml.transform.TransformerException;
 
 public class ServerConnectionThread extends Thread
 {
+	/** Setup a server on a certain port
+	 *  Runs as a Thread and waits for comming connection requests from the clients.
+	 *  For each connection request creates a Thread called ServerCommunicationThread and passes 
+	 *  him connectionSocket*/
 	private ServerModelManager modelManager;
 	final int PORT = 2012;
 	

@@ -3,6 +3,7 @@ package system.domain.model;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
+/** a class that helps in manipulating date and time */
 public class SimpleDate 
 {
    private Calendar time;
@@ -72,6 +73,8 @@ public class SimpleDate
    public static Calendar getTime(String timeText)
    {
       Calendar c = GregorianCalendar.getInstance();
+      c.set(Calendar.MINUTE, 0);
+      c.set(Calendar.SECOND, 0);
       c.set(Calendar.MILLISECOND, 0);
       try
       {
@@ -83,10 +86,10 @@ public class SimpleDate
                .parseInt(timeText.substring(6, 10)));
          c.set(Calendar.HOUR_OF_DAY, Integer
                .parseInt(timeText.substring(11, 13)));
-         c.set(Calendar.MINUTE, Integer
-               .parseInt(timeText.substring(14, 16)));
-         c.set(Calendar.SECOND, Integer
-               .parseInt(timeText.substring(17)));
+//         c.set(Calendar.MINUTE, Integer
+//               .parseInt(timeText.substring(14, 16)));
+//         c.set(Calendar.SECOND, Integer
+//               .parseInt(timeText.substring(17)));
       }
       catch (Exception e)
       {

@@ -2,6 +2,7 @@ package system.domain.model;
 
 import java.io.Serializable;
 
+/** a class that represents one single room */
 public class SingleRoom extends NormalRoom implements Serializable
 {
 	public SingleRoom(int id, int price)

@@ -2,6 +2,9 @@ package system.domain.model;
 
 import java.io.Serializable;
 
+/** represents users DoubleRoom 
+ * @param type 1 - with a king size bed, 2- twin beds.,
+ * */
 public class DoubleRoom extends NormalRoom implements Serializable
 {
 	int type;		// 1 - with a king size bed, 2- twin beds.,

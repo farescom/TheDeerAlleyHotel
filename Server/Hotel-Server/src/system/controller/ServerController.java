@@ -11,18 +11,21 @@ import system.domain.model.Room;
 import system.domain.model.SimpleDate;
 import system.view.ServerView;
 
+/** Controller class */
 public class ServerController
 {
 	private ServerModelManager model;
 	private ServerView view;
 
+	/** Controller contructor */
 	public ServerController(ServerModelManager model, ServerView view)
 	{
 		this.model = model;
 		this.view = view;
 		this.model.addObserver(view);
 	}
-
+	
+	/** A method that receives commands entered by users from View  */
 	public void execute(String what) throws IOException
 	{
 		what = what.toLowerCase();

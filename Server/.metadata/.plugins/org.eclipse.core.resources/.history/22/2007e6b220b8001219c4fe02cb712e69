@@ -1,0 +1,55 @@
+package system.domain.mediator;
+import java.net.*;
+import java.io.*;
+
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.TransformerException;
+
+public class ServerConnectionThread extends Thread
+{
+	/** Setup a server on a certain port
+	 *  Runs as a Thread and waits for comming connection requests from the clients.
+	 *  For each connection request creates a Thread called ServerCommunicationThread*/
+	private ServerModelManager modelManager;
+	final int PORT = 2012;
+	
+	public ServerConnectionThread(ServerModelManager modelManager) throws IOException, ParserConfigurationException, TransformerException
+	{
+		this.modelManager = modelManager;
+		//System.out.println("The application started working as server...");
+	}
+	
+	public void run()
+	{
+		// create welcoming socket at port 6789
+		try
+		{
+			ServerSocket welcomeSocket = new ServerSocket(PORT);
+			System.out.println("The application started working as server...");
+			
+			while (true)
+			{
+				// Wait, on welcoming socket for contact by client
+				Socket connectionSocket = welcomeSocket.accept();
+				
+				// Start a thread with the client communication
+				ServerCommunicationThread c = new ServerCommunicationThread(connectionSocket, modelManager);
+				
+				// information
+				//System.out.println(" [ Host address:\t " + connectionSocket.getInetAddress().getHostAddress() + "] ");
+				//System.out.println(" [ Host name:\t\t " + connectionSocket.getInetAddress().getHostName() + "] ");
+			}
+		}
+		catch (IOException e)
+		{
+			e.printStackTrace();
+		}
+		catch (ParserConfigurationException e)
+		{
+			e.printStackTrace();
+		} catch (TransformerException e)
+		{
+			e.printStackTrace();
+		}
+	}
+}

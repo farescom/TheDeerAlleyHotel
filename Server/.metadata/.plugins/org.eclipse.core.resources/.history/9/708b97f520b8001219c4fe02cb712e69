@@ -1,0 +1,45 @@
+package system.domain.model;
+
+import java.io.Serializable;
+import java.util.Date;
+
+/** represents users CheckIn */
+public class CheckOut implements Serializable
+{
+	CheckIn checkIn;
+	Date departure_data;
+	
+	public CheckOut(CheckIn checkIn, Date departure_data)
+	{
+		this.checkIn = checkIn;
+		this.departure_data = departure_data;
+	}
+
+	public CheckIn getCheckIn() {
+		return checkIn;
+	}
+
+	public void setCheckIn(CheckIn checkIn) {
+		this.checkIn = checkIn;
+	}
+
+	public Date getDeparture_data() {
+		return departure_data;
+	}
+
+	public void setDeparture_data(Date departure_data) {
+		this.departure_data = departure_data;
+	}
+
+	@Override
+	public String toString() {
+		return "CheckOut [checkIn=" + checkIn + ", departure_data="
+				+ departure_data + "]";
+	}
+}
+
+/*
+Reception employee could check-out guests
+by registering their data: departure data. The system calculates the price then.
+Reception employee could see check-outs.
+*/

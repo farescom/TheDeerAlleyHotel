@@ -8,18 +8,21 @@ import javax.xml.transform.TransformerException;
 import system.domain.mediator.ClientModelManager;
 import system.view.ClientView;
 
+/** Controller class */
 public class ClientController
 {
    private ClientModelManager model;
    private ClientView view;
 
+   /** Controller contructor */
    public ClientController(ClientModelManager model, ClientView view)
    {
       this.model = model;
       this.view = view;
       this.model.addObserver(view);
    }
-
+   
+   /** A method that receives commands entered by users from View  */
    public void execute(Object what)
    {
 	   if (what instanceof String)	// then its just a command

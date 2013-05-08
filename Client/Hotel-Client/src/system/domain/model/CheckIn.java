@@ -3,6 +3,7 @@ package system.domain.model;
 import java.io.Serializable;
 import java.util.Date;
 
+/** represents users CheckIn */
 public class CheckIn implements Serializable
 {
 	Guest guest;

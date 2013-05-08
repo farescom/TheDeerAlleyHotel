@@ -2,6 +2,7 @@ package system.domain.model;
 
 import java.io.Serializable;
 
+/** a class that represents a suit */
 public class Suit extends Room implements Serializable
 {
 	public Suit(int id, int number_of_bedrooms, int price)

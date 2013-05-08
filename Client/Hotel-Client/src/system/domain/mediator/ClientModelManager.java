@@ -6,11 +6,13 @@ import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.TransformerException;
 import system.domain.model.SingleRoom;
 
+/** a facade for the Model */
 public class ClientModelManager extends Observable
 {
 	private int status = 1;		// 0- server not working   1- server working
     private Proxy proxy;
    
+   /** ClientModelManager contructor */
    public ClientModelManager(int client_computer_id)
    {
 	   

@@ -7,22 +7,25 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
+/** represents users Booking 
+ * */
 public class Booking implements Serializable
 {
-	int id;								// reservation number
-	Guest guest;						// guest personal data: name, address, phone, date of birth and nationality.
-	ArrayList <Room> booked_rooms;		// which rooms are booked at which prices.
+	/** reservation number */
+	int id;				
+	/** guest personal data: name, address, phone, date of birth and nationality. */
+	Guest guest;						
+	/** which rooms are booked at which prices. */
+	ArrayList <Room> booked_rooms;
 	Date arrival;
 	Date departure;
-	int extra_bed = 0; 				 	// the number of extra beds
-	int number_of_guests;				// (Optional) could be null
+	/** (Optional) the number of extra beds */
+	int extra_bed = 0; 				 	
+	/** (Optional) could be null */
+	int number_of_guests;				
+	/** the status of Booking, 1- booked, 0- notConfirmed (happens after 18:00)*/
+	int status = 1;					
 	
-	int status = 1;							// the status of Booking
-										// 1- booked, 0- notConfirmed (happens after 18:00)
-	
-	/*
-	Reception employee could book at standard price (that should be possible to be modified) or at special price (which have to be lower).
-	 */
 	public Booking(int id, Guest guest, ArrayList<Room> booked_rooms,
 			Date arrival, Date departure, int extra_bed, int number_of_guests)
 	{
@@ -36,8 +39,7 @@ public class Booking implements Serializable
 		this.status = 1;
 	}
 	
-	public Booking(int id, Guest guest, ArrayList<Room> booked_rooms,
-			Date arrival, Date departure, int extra_bed)
+	public Booking(int id, Guest guest, ArrayList<Room> booked_rooms, Date arrival, Date departure, int extra_bed)
 	{
 		this.id = id;
 		this.guest = guest;
@@ -48,8 +50,7 @@ public class Booking implements Serializable
 		this.status = 1;
 	}
 	
-	public Booking(int id, Guest guest, ArrayList<Room> booked_rooms,
-			Date arrival, Date departure)
+	public Booking(int id, Guest guest, ArrayList<Room> booked_rooms, Date arrival, Date departure)
 	{
 		this.id = id;
 		this.guest = guest;
