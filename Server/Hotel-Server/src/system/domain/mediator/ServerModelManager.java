@@ -2,6 +2,7 @@ package system.domain.mediator;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Observable;
 
 import javax.xml.parsers.ParserConfigurationException;
@@ -66,6 +67,44 @@ public class ServerModelManager extends Observable implements ModelInterface
 	public ArrayList<Booking> ListBookings()
 	{
 		return bookings;
+	}
+	
+	public ArrayList<CheckIn> ListCheckins()
+	{
+		return checkins;
+	}
+	
+	public ArrayList<CheckOut> ListCheckouts()
+	{
+		return checkouts;
+	}
+	
+	public ArrayList<CheckIn> ListCheckinsByDay(Date date)
+	{
+		ArrayList<CheckIn> newArrayList = new ArrayList<CheckIn>();
+		for(CheckIn checkin : checkins)
+		{
+			if(checkin.getArrival_date() == date)
+			{
+				newArrayList.add(checkin);
+			}
+		}
+		
+		return newArrayList;
+	}
+	
+	public ArrayList<CheckOut> ListCheckoutsByDay(Date date)
+	{
+		ArrayList<CheckOut> newArrayList = new ArrayList<CheckOut>();
+		for(CheckOut checkout : checkouts)
+		{
+			if(checkout.getDeparture_data() == date)
+			{
+				newArrayList.add(checkout);
+			}
+		}
+		
+		return newArrayList;
 	}
 	
 	public ArrayList<Room> ListRooms()

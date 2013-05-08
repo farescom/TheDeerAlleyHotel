@@ -41,6 +41,10 @@ public class ServerController
 			view.Println("commands: shows available commands.");
 			view.Println("book: creates new booking (reservation).");
 			view.Println("bookings: shows all the bookings (reservations).");
+			view.Println("checkins: shows all checkins.");
+			view.Println("checkouts: shows all checkouts.");
+			view.Println("checkinsByDay: shows all checkins in given day.");
+			view.Println("checkoutsByDay: shows all checkouts in given day.");
 			break;
 		case "close":
 		case "quit":
@@ -53,6 +57,18 @@ public class ServerController
 			break;
 		case "bookings":
 			view.Println(model.ListBookings().toString());
+			break;
+		case "checkins":
+			view.Println(model.ListCheckins().toString());
+			break;
+		case "checkouts":
+			view.Println(model.ListCheckouts().toString());
+			break;
+		case "checkinsByDay":
+			view.Println(model.ListCheckinsByDay(getDateInfo()).toString());
+			break;
+		case "checkoutsByDay":
+			view.Println(model.ListCheckoutsByDay(getDateInfo()).toString());
 			break;
 		default:
 			view.Println("Unknown command!");
