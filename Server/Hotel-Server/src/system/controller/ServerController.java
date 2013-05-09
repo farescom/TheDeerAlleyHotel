@@ -44,6 +44,9 @@ public class ServerController
 			view.Println("commands: shows available commands.");
 			view.Println("book: creates new booking (reservation).");
 			view.Println("bookings: shows all the bookings (reservations).");
+			view.Println("search_bookings_by_name: shows specific booking by the given name of the guest");
+			view.Println("change_booking: change specific booking by the given id");
+			view.Println("change_booking: cancel specific booking by the given id");
 			view.Println("checkins: shows all checkins.");
 			view.Println("checkouts: shows all checkouts.");
 			view.Println("checkins_by_day: shows all checkins in given day.");
@@ -61,6 +64,17 @@ public class ServerController
 			break;
 		case "bookings":
 			view.Println(model.ListBookings().toString());
+			break;
+		case "search_bookings_by_name":
+		case "sbbn":
+			view.Println(model.getBookingsByName(getGuestName().toString()).toString());
+			break;
+		case "change_booking":
+			model.removeBooking(getIdOfBookingToChange());
+			model.Book(getBookingInfo());
+			break;
+		case "cancel_booking":
+			model.removeBooking(getIdOfBookingToCancel());
 			break;
 		case "checkins":
 			view.Println(model.ListCheckins().toString());
@@ -85,7 +99,7 @@ public class ServerController
 	/**
 	 * Ask user to fill Booking information
 	 * 
-	 * @return
+	 * @return Booking
 	 * @throws NumberFormatException
 	 * @throws IOException
 	 */
@@ -141,7 +155,21 @@ public class ServerController
 					}
 					while(price > model.getRoom(id).get_price());
 				}
+				booking.setBooked_rooms(booked_rooms);
 
+				view.Print("Does the guest want extra beds (y/n): ");
+				if(view.readLine().equals("y"))
+				{
+					view.Print("How many extra beds does the guest want");
+					booking.setExtra_bed(Integer.parseInt(view.readLine()));
+				}
+
+				view.Print("Does the guest want additional friends (y/n): ");
+				if(view.readLine().equals("y"))
+				{
+					view.Print("How many additional guests");
+					booking.setNumber_of_guests(Integer.parseInt(view.readLine()));
+				}
 			}
 			else
 			{
@@ -152,21 +180,6 @@ public class ServerController
 			view.Print("Do you want to book " + tmp + " room (y/n): ");
 		}
 		while(view.readLine().equals("y"));
-		booking.setBooked_rooms(booked_rooms);
-
-		view.Print("Does the guest want extra beds (y/n): ");
-		if(view.readLine().equals("y"))
-		{
-			view.Print("How many extra beds does the guest want");
-			booking.setExtra_bed(Integer.parseInt(view.readLine()));
-		}
-
-		view.Print("Does the guest want additional friends (y/n): ");
-		if(view.readLine().equals("y"))
-		{
-			view.Print("How many additional guests");
-			booking.setNumber_of_guests(Integer.parseInt(view.readLine()));
-		}
 
 		return booking;
 	}
@@ -192,6 +205,38 @@ public class ServerController
 		guest.setNationality(view.readLine());
 
 		return guest;
+	}
+	
+	/**
+	 * @return Given name of the guest
+	 * @throws IOException
+	 */
+	private String getGuestName() throws IOException
+	{
+		view.Print("Give the name of the guest that you would like to search in bookings: ");
+		return view.readLine();
+	}
+	
+	/**
+	 * @return Id given by the user
+	 * @throws NumberFormatException
+	 * @throws IOException
+	 */
+	public int getIdOfBookingToChange() throws NumberFormatException, IOException 
+	{
+		view.Print("Give the booking id which you would like to change: ");
+		return Integer.parseInt(view.readLine()); 
+	}
+	
+	/**
+	 * @return Id given by the user
+	 * @throws NumberFormatException
+	 * @throws IOException
+	 */
+	public int getIdOfBookingToCancel() throws NumberFormatException, IOException 
+	{
+		view.Print("Give the booking id which you would like to cancel: ");
+		return Integer.parseInt(view.readLine()); 
 	}
 
 	/**

@@ -53,6 +53,9 @@ public class ServerModelManager extends Observable implements ModelInterface
 		return rooms.get(id);
 	}
 
+	/**
+	 * @param id of the room
+	 */
 	public void reserveRoom(int id)
 	{
 		getRoom(id).setAvailable(false);
@@ -60,14 +63,72 @@ public class ServerModelManager extends Observable implements ModelInterface
 		super.notifyObservers("Room with id " + id + " was reserved.");
 	}
 	
+	/**
+	 * @return booking list size
+	 */
 	public int getBookingSize()
 	{
 		return bookings.size();
 	}
 
+	/**
+	 * @return ArrayList<Booking>
+	 */
 	public ArrayList<Booking> ListBookings()
 	{
 		return bookings;
+	}
+	
+	/**
+	 * Return a ArrayList of Booking reserved by a particular guest
+	 * @param name of the guest
+	 * @return ArrayList<Booking> 
+	 */
+	public ArrayList<Booking> getBookingsByName(String name)
+	{
+		ArrayList<Booking> tmpArrayList = new ArrayList<Booking>();
+		for(Booking booking : bookings)
+		{
+			if(booking.getGuest().getName().equals(name))
+			{
+				tmpArrayList.add(booking);
+			}
+		}
+		return tmpArrayList;
+	}
+	
+	/**
+	 * Remove booking by specific id
+	 * @param id by which the booking is going to be removed
+	 */
+	public void removeBooking(int id)
+	{
+		for(Booking booking : bookings)
+		{
+			if(booking.getId() == id)
+			{
+				ArrayList <Room> booked_rooms = booking.getBooked_rooms();
+				releaseRooms(booked_rooms);
+				bookings.remove(booking);
+				super.setChanged();
+				super.notifyObservers("Booking with id " + id + " was released.");
+				break;
+			}
+		}
+	}
+	
+	/**
+	 * Release the rooms
+	 * @param List of the rooms that are going to be released
+	 */
+	public void releaseRooms(ArrayList <Room> rooms)
+	{
+		for(Room room : rooms)
+		{
+			room.setAvailable(true);
+			super.setChanged();
+			super.notifyObservers("Room with id " + room.get_id() + " was released.");
+		}
 	}
 	
 	public ArrayList<CheckIn> ListCheckins()
@@ -157,5 +218,4 @@ public class ServerModelManager extends Observable implements ModelInterface
 	{
 
 	}
-
 }

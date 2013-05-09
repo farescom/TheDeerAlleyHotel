@@ -16,6 +16,10 @@ public class dataProvider
 	private static final int DOUBLE_ROOM_KING_SIZE_BED = 12;
 	private static final int DOUBLE_ROOM_TWIN_BEDS = 6;
 	
+	/**
+	 * Returns the list of embedded hotel's rooms
+	 * @return ArrayList<Room>
+	 */
 	public static ArrayList<Room> getRoomList()
 	{
 		ArrayList<Room> room = new ArrayList<Room>();
