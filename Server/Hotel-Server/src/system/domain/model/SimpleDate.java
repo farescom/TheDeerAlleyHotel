@@ -1,5 +1,6 @@
 package system.domain.model;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
@@ -81,11 +82,16 @@ public class SimpleDate
          c.set(Calendar.DAY_OF_MONTH, Integer
                .parseInt(timeText.substring(0, 2)));
          c.set(Calendar.MONTH, (Integer
-               .parseInt(timeText.substring(3, 5)) + 1));
+               .parseInt(timeText.substring(3, 5)) - 1));
          c.set(Calendar.YEAR, Integer
                .parseInt(timeText.substring(6, 10)));
          c.set(Calendar.HOUR_OF_DAY, Integer
                .parseInt(timeText.substring(11, 13)));
+         
+//         SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy HH");
+//         String formattedDate = df.format(c.getTime());
+//         System.out.println("Data: "+ formattedDate);
+         
 //         c.set(Calendar.MINUTE, Integer
 //               .parseInt(timeText.substring(14, 16)));
 //         c.set(Calendar.SECOND, Integer
@@ -93,6 +99,7 @@ public class SimpleDate
       }
       catch (Exception e)
       {
+    	 e.printStackTrace();
          c.set(Calendar.DAY_OF_MONTH, 1);
          c.set(Calendar.MONTH, 1);
          c.set(Calendar.YEAR, 0);
