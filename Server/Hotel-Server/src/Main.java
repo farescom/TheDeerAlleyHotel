@@ -13,7 +13,7 @@ public class Main
 			// we have to create server app, and normal application??
 
 			// creating server
-			ServerModelManager model = new ServerModelManager();
+			ServerModelManager model = ServerModelManager.getInstance();
 			ServerView view = new ServerView();
 			ServerController controller = new ServerController(model, view);
 			view.start(controller);

@@ -14,27 +14,11 @@ public class ServerConnectionThread extends Thread
 	private ServerModelManager modelManager;
 	final int PORT = 2012;
 	
-	private static ServerConnectionThread INSTANCE;
 	
-	private ServerConnectionThread()
-	{
-		this.modelManager = null;
-		//System.out.println("The application started working as server...");
-	}
-	
-	public static ServerConnectionThread getInstance()
-	{
-		if(INSTANCE == null)
-		{
-			INSTANCE = new ServerConnectionThread();
-		}
-		
-		return INSTANCE;
-	}
-	
-	public void init(ServerModelManager modelManager)
+	public ServerConnectionThread(ServerModelManager modelManager)
 	{
 		this.modelManager = modelManager;
+		//System.out.println("The application started working as server...");
 	}
 	
 	public void run()

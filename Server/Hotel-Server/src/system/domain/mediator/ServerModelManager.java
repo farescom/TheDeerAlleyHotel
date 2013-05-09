@@ -1,12 +1,8 @@
 package system.domain.mediator;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Observable;
-
-import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.transform.TransformerException;
 
 import system.domain.model.Booking;
 import system.domain.model.CheckIn;
@@ -21,17 +17,28 @@ public class ServerModelManager extends Observable implements ModelInterface
 	private ArrayList<CheckIn> checkins;
 	private ArrayList<CheckOut> checkouts;
 	private ArrayList<Room> rooms;
+	
+	private static ServerModelManager INSTANCE;
 
-	public ServerModelManager() throws IOException, ParserConfigurationException, TransformerException
+	private ServerModelManager()
 	{
 		bookings = new ArrayList<Booking>();
 		checkins = new ArrayList<CheckIn>();
 		checkouts = new ArrayList<CheckOut>();
 		rooms = dataProvider.getRoomList();
 
-		ServerConnectionThread server = ServerConnectionThread.getInstance();
-		server.init(this);
+		ServerConnectionThread server = new ServerConnectionThread(this);
 		server.start();
+	}
+	
+	public static ServerModelManager getInstance()
+	{
+		if(INSTANCE == null)
+		{
+			INSTANCE = new ServerModelManager();
+		}
+		
+		return INSTANCE;
 	}
 
 	// Here we will implement or the functionality, which will be called from
