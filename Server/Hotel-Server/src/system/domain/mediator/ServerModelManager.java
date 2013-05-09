@@ -29,7 +29,8 @@ public class ServerModelManager extends Observable implements ModelInterface
 		checkouts = new ArrayList<CheckOut>();
 		rooms = dataProvider.getRoomList();
 
-		ServerConnectionThread server = new ServerConnectionThread(this);
+		ServerConnectionThread server = ServerConnectionThread.getInstance();
+		server.init(this);
 		server.start();
 	}
 

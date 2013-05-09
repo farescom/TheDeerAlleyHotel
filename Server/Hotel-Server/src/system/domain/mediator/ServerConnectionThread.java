@@ -8,16 +8,33 @@ import javax.xml.transform.TransformerException;
 public class ServerConnectionThread extends Thread
 {
 	/** Setup a server on a certain port
-	 *  Runs as a Thread and waits for comming connection requests from the clients.
+	 *  Runs as a Thread and waits for coming connection requests from the clients.
 	 *  For each connection request creates a Thread called ServerCommunicationThread and passes 
 	 *  him connectionSocket*/
 	private ServerModelManager modelManager;
 	final int PORT = 2012;
 	
-	public ServerConnectionThread(ServerModelManager modelManager) throws IOException, ParserConfigurationException, TransformerException
+	private static ServerConnectionThread INSTANCE;
+	
+	private ServerConnectionThread()
+	{
+		this.modelManager = null;
+		//System.out.println("The application started working as server...");
+	}
+	
+	public static ServerConnectionThread getInstance()
+	{
+		if(INSTANCE == null)
+		{
+			INSTANCE = new ServerConnectionThread();
+		}
+		
+		return INSTANCE;
+	}
+	
+	public void init(ServerModelManager modelManager)
 	{
 		this.modelManager = modelManager;
-		//System.out.println("The application started working as server...");
 	}
 	
 	public void run()

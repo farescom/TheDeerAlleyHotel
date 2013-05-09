@@ -12,8 +12,7 @@ public class Main
 			// app, or
 			// we have to create server app, and normal application??
 
-			// creating serverS
-			// TODO use a singleton pattern for server
+			// creating server
 			ServerModelManager model = new ServerModelManager();
 			ServerView view = new ServerView();
 			ServerController controller = new ServerController(model, view);
