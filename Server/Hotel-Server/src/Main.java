@@ -7,7 +7,8 @@ public class Main
 	public static void main(String args[])
 	{
 		try
-		{
+		{//test
+			
 			// Question: Is it enough to have server and recetion in the same
 			// app, or
 			// we have to create server app, and normal application??
